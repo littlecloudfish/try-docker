@@ -32,8 +32,8 @@ class AccountActivator(_AccountActivator):
         if user is None:
             raise ValidationError('email', _("Entered email doesn't exist"))
 
-        if user.activated:
-            raise ValidationError('email', _('Account is already activated'))
+        # if user.activated:
+        #     raise ValidationError('email', _('Account is already activated')) #big_change
 
         token = self.token_serializer.dumps(
             Token(user_id=user.id, operation=TokenActions.ACTIVATE_ACCOUNT)
